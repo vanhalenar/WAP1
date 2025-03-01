@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs": "jsdoc -d doc --configure jsdoc.json ./primes.mjs"
+    "docs": "./node_modules/.bin/jsdoc -d doc --configure jsdoc.json ./primes.mjs"
   },
   "repository": {
     "type": "git",
