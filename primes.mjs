@@ -1,48 +1,74 @@
-function isPrime(num) {
-  return new Promise(function (resolve, reject) {
-    if (num <= 1) {
-      resolve(false);
-    }
+/**
+ * @module primes
+ * @description Prime number library
+ * @exports isPrime
+ * @exports getPrimes
+ * @exports iterPrimes
+ * @author Timotej Halenár
+ */
 
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i == 0) {
-        resolve(false);
-      }
-    }
-    resolve(true);
-  });
+/**
+ * Function that checks if a number is prime.
+ * @param {number} n number to check
+ * @returns true if prime, false if not
+ */
+function primeCheck(n) {
+  if (n <= 1) return false;
+
+  if (n == 2 || n == 3) return true;
+
+  if (n % 2 == 0 || n % 3 == 0) return false;
+
+  for (let i = 5; i <= Math.sqrt(n); i = i + 6)
+    if (n % i == 0 || n % (i + 2) == 0) return false;
+
+  return true;
 }
 
-function getPrimes(threshold) {
-  return new Promise(function (resolve, reject) {
-    let arr = [];
-    for (let i = 2; i <= threshold; i++) {
-      if (isPrime(i)) {
-        arr.push(i);
-      }
-    }
-    resolve(arr);
-  });
+/**
+ * Asynchronous function that checks if a number is prime.
+ * @param {number} num number to check
+ * @returns true if prime, false if not
+ */
+export async function isPrime(num) {
+  if (num <= 1) return false;
+  if (num === 2) return true;
+  if (num % 2 === 0) return false;
+
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (num % i === 0) return false;
+  }
+  return true;
 }
 
-function iterPrimes() {}
+/**
+ * Asynchronous function that returns an array of prime numbers smaller than threshold.
+ * @param {number} threshold upper limit of returned array
+ * @returns array of prime numbers smaller than the threshold
+ */
+export async function getPrimes(threshold) {
+  let primes = [];
+  for (let i = 2; i < threshold; i++) {
+    if (await isPrime(i)) {
+      primes.push(i);
+    }
+  }
+  return primes;
+}
 
-(async function () {
-  /// 1: isPrime vrací Promise
-  isPrime(2).then((result) => console.log("2: ", result));
-  isPrime(3).then((result) => console.log("3: ", result));
-  isPrime(4).then((result) => console.log("4: ", result));
-  isPrime(5).then((result) => console.log("5: ", result));
-  isPrime(6).then((result) => console.log("6: ", result));
-  isPrime(7).then((result) => console.log("7: ", result));
-  isPrime(2).then((result) => console.log("2: ", result));
-  /// 2: getPrimes vrací prvočísla V Promise
-  getPrimes(1000).then((primes) => console.log(primes.join(", ")));
-  /// 3: generátor iterPrimes
-  /* for (let prime of iterPrimes()) {
-		if (prime > 1000) {
-			console.log("1009:", prime === 1009);
-			break;
-		}
-	} */
-})();
+/**
+ * Generator function that yields prime numbers.
+ * @generator
+ * @yields next prime number in the sequence
+ */
+export function* iterPrimes() {
+  let i = 1;
+  while (true) {
+    i++;
+    if (primeCheck(i)) {
+      yield i;
+    } else {
+      continue;
+    }
+  }
+}

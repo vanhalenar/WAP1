@@ -1,0 +1,22 @@
+{
+  "name": "wap1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs": "jsdoc -d doc --configure jsdoc.json ./primes.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanhalenar/WAP1.git"
+  },
+  "author": "Timotej Halenar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanhalenar/WAP1/issues"
+  },
+  "homepage": "https://github.com/vanhalenar/WAP1#readme",
+  "dependencies": {
+    "jsdoc": "^4.0.4"
+  }
+}
