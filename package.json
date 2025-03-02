@@ -2,9 +2,10 @@
   "name": "wap1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "docs": "./node_modules/.bin/jsdoc -d doc --configure jsdoc.json ./primes.mjs"
+    "docs": "./node_modules/.bin/jsdoc -d doc --configure jsdoc.json ./primes.mjs",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,11 @@
   "homepage": "https://github.com/vanhalenar/WAP1#readme",
   "dependencies": {
     "jsdoc": "^4.0.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {}
   }
 }
