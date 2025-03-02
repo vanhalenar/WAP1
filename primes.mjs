@@ -8,26 +8,26 @@
  */
 
 /**
- * Function that checks if a number is prime. Used by other functions in the module.
+ * Checks if a number is prime. Used by other functions in the module.
  * Based on https://en.wikipedia.org/wiki/Primality_test#Simple_methods
  * @param {number} n number to check.
  * @returns true if prime, false if not.
  */
-function primeCheck(n) {
-  if (n <= 1) {
+function primeCheck(num) {
+  if (num <= 1) {
     return false;
   }
 
-  if (n == 2 || n == 3) {
+  if (num == 2 || num == 3) {
     return true;
   }
 
-  if (n % 2 == 0 || n % 3 == 0) {
+  if (num % 2 == 0 || num % 3 == 0) {
     return false;
   }
 
-  for (let i = 5; i <= Math.sqrt(n); i = i + 6) {
-    if (n % i == 0 || n % (i + 2) == 0) {
+  for (let i = 5; i <= Math.sqrt(num); i = i + 6) {
+    if (num % i == 0 || num % (i + 2) == 0) {
       return false;
     }
   }
@@ -41,14 +41,7 @@ function primeCheck(n) {
  * @returns true if prime, false if not.
  */
 export async function isPrime(num) {
-  if (num <= 1) return false;
-  if (num === 2) return true;
-  if (num % 2 === 0) return false;
-
-  for (let i = 3; i <= Math.sqrt(num); i += 2) {
-    if (num % i === 0) return false;
-  }
-  return true;
+  return primeCheck(num);
 }
 
 /**
