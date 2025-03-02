@@ -1,6 +1,6 @@
 /**
  * @module primes
- * @description Prime number library
+ * @description Basic prime number library
  * @exports isPrime
  * @exports getPrimes
  * @exports iterPrimes
@@ -8,27 +8,37 @@
  */
 
 /**
- * Function that checks if a number is prime.
- * @param {number} n number to check
- * @returns true if prime, false if not
+ * Function that checks if a number is prime. Used by other functions in the module.
+ * Based on https://en.wikipedia.org/wiki/Primality_test#Simple_methods
+ * @param {number} n number to check.
+ * @returns true if prime, false if not.
  */
 function primeCheck(n) {
-  if (n <= 1) return false;
+  if (n <= 1) {
+    return false;
+  }
 
-  if (n == 2 || n == 3) return true;
+  if (n == 2 || n == 3) {
+    return true;
+  }
 
-  if (n % 2 == 0 || n % 3 == 0) return false;
+  if (n % 2 == 0 || n % 3 == 0) {
+    return false;
+  }
 
-  for (let i = 5; i <= Math.sqrt(n); i = i + 6)
-    if (n % i == 0 || n % (i + 2) == 0) return false;
+  for (let i = 5; i <= Math.sqrt(n); i = i + 6) {
+    if (n % i == 0 || n % (i + 2) == 0) {
+      return false;
+    }
+  }
 
   return true;
 }
 
 /**
  * Asynchronous function that checks if a number is prime.
- * @param {number} num number to check
- * @returns true if prime, false if not
+ * @param {number} num number to check.
+ * @returns true if prime, false if not.
  */
 export async function isPrime(num) {
   if (num <= 1) return false;
@@ -42,9 +52,9 @@ export async function isPrime(num) {
 }
 
 /**
- * Asynchronous function that returns an array of prime numbers smaller than threshold.
- * @param {number} threshold upper limit of returned array
- * @returns array of prime numbers smaller than the threshold
+ * Asynchronous function that returns an array of prime numbers smaller than a specified threshold.
+ * @param {number} threshold upper limit of returned array.
+ * @returns array of prime numbers smaller than the threshold.
  */
 export async function getPrimes(threshold) {
   let primes = [];
@@ -59,7 +69,7 @@ export async function getPrimes(threshold) {
 /**
  * Generator function that yields prime numbers.
  * @generator
- * @yields next prime number in the sequence
+ * @yields next prime number in the sequence.
  */
 export function* iterPrimes() {
   let i = 1;

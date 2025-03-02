@@ -1,7 +1,7 @@
 {
   "name": "wap1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic prime number library",
   "type": "module",
   "scripts": {
     "docs": "./node_modules/.bin/jsdoc -d doc --configure jsdoc.json ./primes.mjs",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/vanhalenar/WAP1.git"
   },
-  "author": "Timotej Halenar",
+  "author": "Timotej Halenár",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vanhalenar/WAP1/issues"
