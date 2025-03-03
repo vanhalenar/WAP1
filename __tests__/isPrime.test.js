@@ -84,8 +84,8 @@ test("15 is not prime", () => {
   });
 });
 
-test("24 is not prime", () => {
-  return isPrime(24).then((data) => {
+test("-1 is not prime", () => {
+  return isPrime(-1).then((data) => {
     expect(data).toBe(false);
   });
 });
@@ -114,8 +114,8 @@ test("1234567890 is not prime", () => {
   });
 });
 
-test("42 is not prime", () => {
-  return isPrime(42).then((data) => {
+test("-2 is not prime", () => {
+  return isPrime(-2).then((data) => {
     expect(data).toBe(false);
   });
 });

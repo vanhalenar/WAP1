@@ -7,6 +7,13 @@
  * @author Timotej Halenár
  */
 
+let primeCache = new Map([
+  [0, false],
+  [1, false],
+  [2, true],
+  [3, true],
+]);
+
 /**
  * Checks if a number is prime. Used by other functions in the module.
  * Based on https://en.wikipedia.org/wiki/Primality_test#Simple_methods
@@ -14,24 +21,29 @@
  * @returns true if prime, false if not.
  */
 function primeCheck(num) {
-  if (num <= 1) {
+  let val = primeCache.get(num);
+
+  if (val != undefined) {
+    return val;
+  }
+
+  if (num < 0) {
     return false;
   }
 
-  if (num == 2 || num == 3) {
-    return true;
-  }
-
   if (num % 2 == 0 || num % 3 == 0) {
+    primeCache.set(num, false);
     return false;
   }
 
   for (let i = 5; i <= Math.sqrt(num); i = i + 6) {
     if (num % i == 0 || num % (i + 2) == 0) {
+      primeCache.set(num, false);
       return false;
     }
   }
 
+  primeCache.set(num, true);
   return true;
 }
 
@@ -74,4 +86,8 @@ export function* iterPrimes() {
       continue;
     }
   }
+}
+
+export function getCached() {
+  return primeCache;
 }
