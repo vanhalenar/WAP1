@@ -1,6 +1,6 @@
 /**
  * @module primes
- * @description Basic prime number library
+ * @description Basic prime number library. VUT FIT WAP  Project 1 - 24/25. Tested on node v18.19.1
  * @exports isPrime
  * @exports getPrimes
  * @exports iterPrimes
